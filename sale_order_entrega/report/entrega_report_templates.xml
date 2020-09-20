@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+<!-- DELIVERY SLIP REPORT CUSTOMIZATION -->
+  	<template id="sh_report_delivery_doc_for_sol_pol_line_desc_in_picking" inherit_id="stock.report_delivery_document">
+			
+		<!-- MOVE LINE IDS CUSTOMIZATION PRINTED AFTER DELIVERY DONE -->
+		<xpath expr="//table[3]//thead/tr//th[1]" position="after">
+			 <th t-if="o.picking_type_id.code in ['outgoing','incoming']"><strong>Description</strong></th>
+		</xpath>
+		
+		<xpath expr="//table[3]//tbody/tr//td[1]" position="after">
+             <td t-if="o.picking_type_id.code == 'outgoing'">
+                 <span t-field="move_line.sh_sol_pol_sale_line_desc_sml"/>
+             </td>
+             <td t-if="o.picking_type_id.code == 'incoming'">
+                 <span t-field="move_line.sh_sol_pol_purchase_line_desc_sml"/>
+             </td>
+		</xpath>		
+		
+		<!-- MOVE LINE CUSTOMIZATION PRINTED BEFORE DELIVERY DONE -->
+		<xpath expr="//table[2]/thead/tr//th[1]" position="after">
+			 <th t-if="o.picking_type_id.code in ['outgoing','incoming']">
+				 <strong>Description</strong>
+			 </th>			
+		</xpath>
+		
+		<xpath expr="//table[2]/tbody/tr//td[1]" position="after">
+		
+             <td t-if="o.picking_type_id.code == 'outgoing'">
+                 <span t-field="move.sh_sol_pol_sale_line_desc_in_picking"/>
+             </td>
+             <td t-if="o.picking_type_id.code == 'incoming'">
+                 <span t-field="move.sh_sol_pol_purchase_line_desc_in_picking"/>
+             </td>             
+             
+		</xpath>		
+		
+  	</template>	
+  	
+  	
+  	
+  	
+<!-- PICKING OPERATION REPORT CUSTOMIZATION -->
+	<template id="sh_inherit_report_picking_for_sol_pol_line_desc_in_picking" inherit_id="stock.report_picking">
+		
+		<xpath expr="//table[2]//thead/tr//th[1]" position="after">
+			<th t-if="o.picking_type_id.code in ['outgoing','incoming']" width="20%">Description</th>
+		</xpath>
+		
+		<xpath expr="//table[2]//tbody/tr//td[1]" position="after">
+             
+             <td t-if="o.picking_type_id.code == 'outgoing'">
+                 <span t-field="move.sh_sol_pol_sale_line_desc_in_picking"/>
+             </td>
+             <td t-if="o.picking_type_id.code == 'incoming'">
+                 <span t-field="move.sh_sol_pol_purchase_line_desc_in_picking"/>
+             </td>  
+		
+		</xpath>		
+	
+	</template>  	
+
+<!-- SALE ORDER REPORT CUSTOMIZATION -->
+
+	<template id="sh_inherit_report_picking_for_sol_pol_line_desc_in_picking" inherit_id="stock.report_picking">
+
+	</template>
+
+</odoo>

@@ -1,0 +1,18 @@
+<odoo>
+  <data>
+   <!-- sale.order inherit form view -->
+   <record id="th_inherit_view_sale_order_form_entrega" model="ir.ui.view">
+     <field name="name">th_inherit_view_sale_order_form_entrega</field>
+     <field name="model">sale.order</field>
+     <field name="inherit_id" ref="sale.view_order_form"/>
+     <field name="arch" type="xml">
+       <!-- Add your xpath here -->
+       <!-- Sale Order Line -->
+       <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="after">
+         <!-- Add your fields here -->
+         <field name="customer_lead"/>
+       </xpath>
+     </field>
+   </record>
+  </data>
+</odoo>

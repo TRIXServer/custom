@@ -1,11 +1,11 @@
 <odoo>
   <data>
     <!-- invoice inherit form view -->
-    <record model="ir.ui.view" id="th_debt_note_origin_ar">
-      <field name="name">th_debt_note_origin_ar</field>
+    <record model="ir.ui.view" id="th_inherit_debt_note_origin_ar">
+      <field name="name">th_inherit_debt_note_origin_ar</field>
       <field name="model">account.invoice</field>
       <field name="inherit_id" ref="account.invoice_form"/>
-      <field name="arch" type="xml"/>
+      <field name="arch" type="xml">
         <field name="origin" position="attributes">
           <attribute name="invisible">0</attribute>
         </field>
